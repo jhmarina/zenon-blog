@@ -1,10 +1,10 @@
 const projectsData = [
-  // {
-  //   title: 'Cylynx',
-  //   description: `Reimagining compliance and risk screening with solutions powered by network analytics. Exploring better ways to secure the financial system, improve human-machine collaboration and what it means to build a company.`,
-  //   imgSrc: '/static/img/cylynx-logo.png',
-  //   href: 'https://www.cylynx.io',
-  // },
+  {
+    title: 'Proyecto 1',
+    description: `Pronto`,
+    imgSrc: '/static/img/cylynx-logo.png',
+    href: 'https://www.pronto.io',
+  },
 ]
 
 export default projectsData
