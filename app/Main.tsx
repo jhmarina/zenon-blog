@@ -15,12 +15,18 @@ export default function Home({ posts }) {
             !Hola!, Soy Jesús Herman Marina
           </h1>
           <h2 className="prose text-lg text-gray-600 dark:text-gray-400">
-            {`¡Hola! Soy Jesús Herman y te doy la bienvenida a ${siteMetadata.description}. Con formación en medios digitales y una larga trayectoria como diseñador web y especialista en UX, actualmente soy Project Manager en SUSE, una destacada empresa de Open Source. En mi tiempo libre, disfruto creando y
+            {`¡Hola! Soy Jesús Herman y te doy la bienvenida a ${siteMetadata.description}. 
+            Con formación en comunicación audiovisual y una larga trayectoria como diseñador web y especialista en UX, 
+            desde 2021 hasta finales de 2023 he trabajado como Project Manager en SUSE, una destacada empresa de Open Source. 
+            Ahora mismo me encuentro focalizado en formarme en el campo de la Ciencia de Datos (Data Science) y la Inteligencia Artificial.
+            Desarrollo también
             `}
-            <Link href="/blog">escribiendo</Link>
-            {' sobre diversos '}
-            <Link href="/proyectos">proyectos</Link>
-            {' ¡Gracias por la visita!'}
+            <Link href="https://savantlabs.es"></Link>
+            {' webs para PYMES, a parte de escribir de vez en cuando en este '}
+            <Link href="/blog"></Link>
+            {' y desarrollar algún que otro'}
+            <Link href="/proyectos">proyecto</Link>
+            {' personal. ¡Gracias por la visita!'}
           </h2>
         </div>
         {/* <div className="mx-2 my-12 flex w-[300px] items-center justify-center sm:w-[400px] md:w-[550px]">
