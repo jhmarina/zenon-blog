@@ -14,7 +14,7 @@ const siteMetadata = {
   github: "https://github.com/jhmarina",
   twitter: "https://twitter.com/jhmarina2",
   linkedin: "https://www.linkedin.com/in/jesushermanmarina",
-  locale: "es_ES",
+  locale: "es-ES",
   analytics: {
     googleAnalytics: {
       googleAnalyticsId: "G-RVMF148LN0", // e.g. G-XXXXXXX
