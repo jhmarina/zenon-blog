@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Zenon.Blog',
   author: 'Jesus Herman-Marina',
   headerTitle: 'Zenon.Blog',
-  description: 'Zenon.Blog',
+  description: 'Blog personal de Jesus Herman Marina. Dedicado a mi exploración de ideas y a compartir mis descubrimientos, especialmente en el ámbito del desarrollo personal, tecnología, economía y emprendimiento',
   language: 'en-us',
   siteUrl: 'https://www.zenon.blog',
   siteRepo: 'https://github.com/jhmarina/zenon.blog/',
@@ -13,7 +13,7 @@ const siteMetadata = {
   github: 'https://github.com/jhmarina',
   twitter: 'https://twitter.com/jhmarina2',
   linkedin: 'https://www.linkedin.com/in/jesushermanmarina',
-  locale: 'es-ES',
+  locale: 'es_ES',
   analytics: {
     googleAnalytics: {
       googleAnalyticsId: 'G-RVMF148LN0', // e.g. G-XXXXXXX
