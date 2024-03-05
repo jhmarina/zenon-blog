@@ -1,10 +1,10 @@
-import Link from '@/components/Link'
-import Tag from '@/components/Tag'
-import siteMetadata from '@/data/siteMetadata'
-import { formatDate } from 'pliny/utils/formatDate'
-import NewsletterForm from 'pliny/ui/NewsletterForm'
+import Link from "@/components/Link";
+import Tag from "@/components/Tag";
+import siteMetadata from "@/data/siteMetadata";
+import { formatDate } from "pliny/utils/formatDate";
+import NewsletterForm from "pliny/ui/NewsletterForm";
 
-const MAX_DISPLAY = 5
+const MAX_DISPLAY = 5;
 
 export default function Home({ posts }) {
   return (
@@ -19,11 +19,11 @@ export default function Home({ posts }) {
             Ahora mismo estoy estudiando Data Science e IA.
             Tengo una pequeña agencia de `}
             <Link href="https://savantlabs.es">diseño web para PYMES</Link>
-            {', escribo en este '}
+            {", escribo en este "}
             <Link href="/blog">blog</Link>
-            {' sobre todo lo que me apasiona y también '}
+            {" sobre todo lo que me apasiona y también "}
             <Link href="/proyectos">proyectos</Link>
-            {'.'}
+            {"."}
           </h2>
         </div>
         {/* <div className="mx-2 my-12 flex w-[300px] items-center justify-center sm:w-[400px] md:w-[550px]">
@@ -37,9 +37,9 @@ export default function Home({ posts }) {
           </h1>
         </div>
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-          {!posts.length && 'No posts found.'}
+          {!posts.length && "No posts found."}
           {posts.slice(0, MAX_DISPLAY).map((post) => {
-            const { slug, date, title, summary, tags } = post
+            const { slug, date, title, summary, tags } = post;
             return (
               <li key={slug} className="py-12">
                 <article>
@@ -47,7 +47,9 @@ export default function Home({ posts }) {
                     <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                        <time dateTime={date}>
+                          {formatDate(date, siteMetadata.locale)}
+                        </time>
                       </dd>
                     </dl>
                     <div className="space-y-5 xl:col-span-3">
@@ -84,7 +86,7 @@ export default function Home({ posts }) {
                   </div>
                 </article>
               </li>
-            )
+            );
           })}
         </ul>
       </div>
@@ -100,5 +102,5 @@ export default function Home({ posts }) {
         </div>
       )}
     </>
-  )
+  );
 }

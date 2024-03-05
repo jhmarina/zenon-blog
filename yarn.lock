@@ -4115,9 +4115,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001406, caniuse-lite@npm:^1.0.30001517, caniuse-lite@npm:^1.0.30001520":
-  version: 1.0.30001532
-  resolution: "caniuse-lite@npm:1.0.30001532"
-  checksum: 613abeb15e03dde307d543195a7860f7ba7450c9c9262d45642b2c8fbe097914fa060d68c8647f9d443947b1f62b09d891858bde7d2cac94fae8133a0b518b28
+  version: 1.0.30001594
+  resolution: "caniuse-lite@npm:1.0.30001594"
+  checksum: 59e52b2213f34fa9317813037fbab4f9b163f9bfeaeeb53035a57046ee2366b69eafc257997eab22982dc061d0576d1f4ef97c29425e1989f6589a7b1d8ed2d5
   languageName: node
   linkType: hard
 
@@ -9841,12 +9841,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.0.0":
-  version: 3.0.3
-  resolution: "prettier@npm:3.0.3"
+"prettier@npm:3.2.5":
+  version: 3.2.5
+  resolution: "prettier@npm:3.2.5"
   bin:
     prettier: bin/prettier.cjs
-  checksum: e10b9af02b281f6c617362ebd2571b1d7fc9fb8a3bd17e371754428cda992e5e8d8b7a046e8f7d3e2da1dcd21aa001e2e3c797402ebb6111b5cd19609dd228e0
+  checksum: 2ee4e1417572372afb7a13bb446b34f20f1bf1747db77cf6ccaf57a9be005f2f15c40f903d41a6b79eec3f57fff14d32a20fb6dee1f126da48908926fe43c311
   languageName: node
   linkType: hard
 
@@ -11418,7 +11418,7 @@ __metadata:
     next-themes: ^0.2.1
     pliny: 0.1.2
     postcss: ^8.4.24
-    prettier: ^3.0.0
+    prettier: 3.2.5
     prettier-plugin-tailwindcss: ^0.5.6
     react: 18.2.0
     react-dom: 18.2.0
