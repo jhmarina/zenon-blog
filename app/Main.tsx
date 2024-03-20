@@ -2,6 +2,7 @@ import Link from "@/components/Link";
 import Tag from "@/components/Tag";
 import siteMetadata from "@/data/siteMetadata";
 import { formatDate } from "pliny/utils/formatDate";
+import Image from "@/components/Image";
 import NewsletterForm from "pliny/ui/NewsletterForm";
 
 const MAX_DISPLAY = 5;
@@ -10,25 +11,32 @@ export default function Home({ posts }) {
   return (
     <>
       <div className="my-6 flex flex-col items-center gap-x-12 xl:mb-12 xl:flex-row">
+        <div className="mx-2 my-12 flex w-[300px] items-center justify-center sm:w-[400px] md:w-[550px]">
+              <Image
+                  src="/static/img/avatar.jpeg"
+                  width={250}
+                  height={250}
+                  alt="avatar"
+                  className=" rounded-full"
+                />
+        </div>
         <div className="mr-8 pt-6">
           <h1 className="pb-6 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             !Hola!, Soy Jesús Herman Marina
           </h1>
           <h2 className="prose text-lg text-gray-600 dark:text-gray-400">
-            {`Apasionado del estoicismo, mutidisiplinar. Formado en comunicación audiovisual llevo 17 años como Diseñador Web y especialista en UX. También he trabajado como Project Manager en el sector Open Source. 
-            Ahora mismo estoy estudiando Data Science e IA.
-            Tengo una pequeña agencia de `}
-            <Link href="https://savantlabs.es">diseño web para PYMES</Link>
-            {", escribo en este "}
+            {`Apasionado del estoicismo, mutidisiplinar. Llevo 17 años como Diseñador Web y especialista en UX. He sido Project Manager en el sector Open Source. 
+            Ahora estudiando Data Science e IA. Apasionado de las finanzas y las BTT.
+            Tambien `}
+            <Link href="https://pouweb.com">diseño webs para PYMES</Link>
+            {". Este es mi "}
             <Link href="/blog">blog</Link>
-            {" sobre todo lo que me apasiona y también "}
+            {". A veces lanzo "}
             <Link href="/proyectos">proyectos</Link>
             {"."}
           </h2>
         </div>
-        {/* <div className="mx-2 my-12 flex w-[300px] items-center justify-center sm:w-[400px] md:w-[550px]">
-          <NewsletterForm title="Stay updated, receive the latest post straight to your mailbox" />
-        </div> */}
+        
       </div>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
