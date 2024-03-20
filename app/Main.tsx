@@ -11,7 +11,15 @@ export default function Home({ posts }) {
   return (
     <>
       <div className="my-6 flex flex-col items-center gap-x-12 xl:mb-12 xl:flex-row">
-
+        <div className="mx-2 my-12 flex w-[300px] items-center justify-center sm:w-[400px] md:w-[550px]">
+          <Image
+            src="/static/img/avatar.jpeg"
+            width={250}
+            height={250}
+            alt="avatar"
+            className=" rounded-full"
+          />
+        </div>
         <div className="mr-8 pt-6">
           <h1 className="pb-6 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             !Hola!, Soy Jesús Herman Marina
