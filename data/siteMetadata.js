@@ -5,7 +5,7 @@ const siteMetadata = {
   headerTitle: "Zenon.Blog",
   description:
     "Blog personal de Jesus Herman Marina. Dedicado a mi exploración de ideas y a compartir mis descubrimientos, especialmente en el ámbito del desarrollo personal, tecnología, economía y emprendimiento",
-  language: "en-us",
+  language: "es-ES",
   siteUrl: "https://www.zenon.blog",
   siteRepo: "https://github.com/jhmarina/zenon.blog/",
   image: "/static/img/avatar.jpeg",
