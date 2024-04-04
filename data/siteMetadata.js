@@ -17,7 +17,7 @@ const siteMetadata = {
   locale: "es-ES",
   analytics: {
     googleAnalytics: {
-      googleAnalyticsId: "G-RVMF148LN0", // e.g. G-XXXXXXX
+      googleAnalyticsId: "G-PP9TE9C1QV", // e.g. G-XXXXXXX
     },
   },
   newsletter: {

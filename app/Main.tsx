@@ -26,7 +26,7 @@ export default function Home({ posts }) {
           </h1>
           <h2 className="prose text-lg text-gray-600 dark:text-gray-400">
             {`Apasionado del estoicismo, mutidisiplinar. Llevo 17 años como Diseñador Web y especialista en UX. He sido Project Manager en el sector Open Source. 
-            Ahora estudiando Data Science e IA. Apasionado de las finanzas y las BTT.
+            Ahora estoy estudiando Data Science e IA. Apasionado de las finanzas y las BTT.
             Tambien `}
             <Link href="https://pouweb.com">diseño webs para PYMES</Link>
             {". Este es mi "}
