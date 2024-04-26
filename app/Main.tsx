@@ -13,9 +13,9 @@ export default function Home({ posts }) {
       <div className="my-6 flex flex-col items-center gap-x-12 xl:mb-12 xl:flex-row">
         <div className="mx-2 my-12 flex w-[300px] items-center justify-center sm:w-[400px] md:w-[550px]">
           <Image
-            src="/static/img/avatar.jpeg"
-            width={250}
-            height={250}
+            src="/static/img/avatar.webp"
+            width={270}
+            height={270}
             alt="avatar"
             className=" rounded-full"
           />
