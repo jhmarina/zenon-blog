@@ -1,0 +1,181 @@
+---
+title: 100 Días de IA - Segunda semana
+date: '2024-04-14'
+tags: ['aprendizajes', 'inteligencia artificial']
+draft: false
+summary: En este artículo narro mi experiencia en el reto "100 Days of AI" dónde, durante 100 días aprendo sobre Inteligencia Artificial, 30 minutos al día. Esta es mi segunda semana.
+---
+
+![El dinero](/static/img/imagen-IA.webp)
+
+<TOCInline toc={props.toc} />
+
+
+## Día 8: Crear una aplicación para tomar notas de audio y convertirlas a texto 
+
+Empieza una nueva semana con un nuevo reto. Hoy nos toca crear una aplicación que transcriba audio. Para ello utilizaremos la herramienta [Glide](https://www.glideapps.com/).
+
+La idea es crear una aplicación para pasar notas de audio a texto. La herramienta convierte las palabras habladas en texto escrito, capturando y organizando eficazmente tus pensamientos. Es como tener un asistente personal que anota todo lo que dices, asegurándose de que no se te escapa ninguna idea ni ningún detalle.
+
+!Vamos a ello! 
+
+Lo primero que tenemos que hacer es crear una cuenta en [Glide](https://www.glideapps.com/). Ahora mismo, son de pago, pero los organizadores del reto ofrecen un mes gratis. !Te recomiendo que te [registres](https://www.100daysai.com/) en su web y te unas al reto! 
+
+Como siempre, nos dan una [guía](https://scribehow.com/shared/Build_an_Audio_to_Text_Note-taking_App__wqFOoBOuTHWUUBUhkuh4FA?utm_source=100daysofai.beehiiv.com&utm_medium=newsletter&utm_campaign=day-8-build-an-audio-to-text-note-taking-app) con las instrucciones a seguir para crear la aplicacion.
+
+Después de seguir un proceso bastante intuitivo para crear la aplicación,  ya la tenemos lista! 
+
+Échale un vistazo [siguiendo este enlace](https://jesuss-app-bbdv.glide.page/).
+
+
+## Dia 9: Crear un coach empresarial usando un “mega prompt”
+
+En el reto de hoy vamos a mejorar nuestros conocimientos de “prompting” (escritura de instrucciones). Para hacerlo, vamos a escribir un “mega prompt”, es decir un prompt largo donde se incluyen todas las instrucciones. Para ello utilizaremos Chat GPT.
+
+Estos prompts se diferencian del proceso “P.R.E.P” que exploramos la [semana anterior](https://zenon.blog/blog/100-dias-ia-semana-1#dia-3---redactar-documentos-sin-esfuerzo), puesto que aquí estamos haciendo uso de roles complejos y directivas. Vamos con el ejemplo de prompt que nos proponen:
+
+_“Eres un asesor empresarial experimentado que brinda a nuevas empresas, emprendedores y líderes corporativos asesoramiento y retroalimentación basados en sus necesidades comerciales reales. Combinas experiencia empresarial del mundo real con habilidades de coaching como la escucha activa. Haces preguntas que permiten a tus clientes reflexionar y aplicar el pensamiento crítico. Te haré preguntas y me proporcionarás respuestas prácticas e instrucciones concisas y le darás formato a tus respuestas con títulos y puntos de enumeración claros. Primero me pedirás que escriba un párrafo sobre mi negocio para que comprendas mi contexto comercial antes de darme un consejo.”_
+
+Las secciones del texto marcadas de color amarillo es donde se configuran los parámetros del rol. La parte del texto marcada en verde son las directivas, que es donde se dan instrucciones sobre el comportamiento del prompt.
+
+El reto de hoy se compone de dos partes:
+
+
+
+1. Usar el prompt de arriba y hacerle preguntas.
+2. Refinar el prompt. Para ello nos sugiere que sigamos unos pasos:
+    1. Analizar las respuestas que nos da. Debemos decidir las que son útiles para nosotros y las que no.
+    2. Anotar cómo podemos revisar nuestro mega-prompt para abordar estos problemas mediante roles o directivas.
+    3. Debemos probar nuestro mega-prompt revisado en ChatGPT y observar la respuesta del modelo. Continuaremos este proceso de refinamiento y pruebas hasta estar satisfechos con los consejos que nos da nuestro asesor empresarial de IA. 
+
+He estado jugando con roles y directivas y creo que me ha quedado un asesor bastante interesante. De hecho, este ejercicio es la base para un proyecto en el que he empezado a trabajar. De momento no puedo decir mucho al respecto, pero en cuanto tenga algo más desarrollado, lo compartiré en este blog.
+
+
+## Dia 10: Investigación con búsqueda impulsada por IA
+
+En el reto de hoy, aprenderemos como la búsqueda impulsada por la IA puede ser útil en el proceso de investigación y recoplacion de datos. Todo utilizamos motores de búsqueda como Google para investigar sobre un tópico, pero las cosas estan cambiando gracias a las herramientas de búsqueda potenciadas por la IA.
+
+
+<a name="investigacion-ia"></a> 
+### Herramientas de búsqueda impulsadas por IA
+
+En lugar de una lista de resultados de búsqueda, las herramientas de búsqueda de IA te ayudan a encontrar lo que necesitas de forma más inteligente. Ya no se trata de tener que buscar, refinar y examinar los resultados de búsqueda individuales para encontrar lo que estás buscando, sino que las herramientas de búsqueda con IA nos presentan una nueva forma más intuitiva de buscar y recopilar información.
+
+De hecho, la búsqueda se está volviendo conversacional, con motores de búsqueda tradicionales como Google y Microsoft adaptandose al uso de la busqueda basada en IA.
+
+En el reto de hoy, utilizaremos dos motores de búsqueda basados en Ia: [Exa](https://exa.ai/search) y [Perplexity](https://www.perplexity.ai). 
+
+
+### Exa
+
+Primero nos centraremos en Exa,. Nos plantean dos tareas:
+
+
+
+1. Leer la [guía de prompting](https://docs.exa.ai/reference/prompting-guide) que encontraremos en la documentación de [Exa](https://exa.ai/search). Una particularidad de Exa es que la mejor forma de de buscar algo es como si estuviesemos compartiendo una respuesta, en vez de estar formulando una pregunta. Es decir, en vez de preguntar “¿Como empiezo un negocio de diseño web?”, el prompt seria “Esta es la mejor manera de empezar un negocio de diseño web:”
+2. Crear nuestro propio prompt sobre un tópico que queramos investigar. Yo he realizado un abúsqueda sobre prompts de Dall-E para la generación de imágenes. He decidido realizar la búsqueda en inglés, puesto que esta herramienta parece devolver resultados solamente en inglés:
+
+
+![alt_text](/static/img/100-dias-ia-2/image1.png "image_tooltip")
+
+
+Una característica interesante de [Exa](https://exa.ai/search) es su opción de mejora del prompt. En la búsqueda que he realizado de hecho, ha sugerido y utilizado un prompt mejor que el mío. Otra característica que me ha gustado mucho es que se pueden realizar búsquedas de diferentes formatos, como por ejemplo PDFs, Tweets y otras opciones. Creo que puede ser una herramienta potente para investigar tópicos en profundidad. Lo malo que le veo es que de momento, no parece tener soporte para Español u otros idiomas.
+
+
+###  Perplexity
+
+[Perplexity](https://www.perplexity.ai) es la siguiente herramienta que nos sugieren que probemos en el reto. Nos sugieren que empecemos por escribir un prompt como “¿Qué es Perplexity?”.
+
+Con Perplexity no he tenido problemas a la hora de utilizar el castellano y me ha respondido sin problemas. 
+
+Me ha sorprendido lo bien estructurada que está la respuesta. Ofrece ademas contenido extra, características e información incluyendo:
+
+
+
+* Resúmenes estructurados de la informacion relacionada con mi búsqueda
+* Fuentes bien etiquetadas, para que sepas exactamente de donde proviene toda la informacion
+* La posibilidad de reescribir la respuesta utilizando diferentes modelos de IA
+* Una funcionalidad de chat qie te permiote hacer preguntas de seguimiento sobre el tópico
+
+![alt_text](/static/img/100-dias-ia-2/image2.png "image_tooltip")
+
+
+[Perplexity](https://www.perplexity.ai) es sin duda otra opción interesante para realizar investigaciones a fondo y recopilar informaci´pn sobreun topico concreto. La voy a tener muy en cuenta tambien en el futuro.
+
+Con esto termino este reto. Ha sido sin duda un reto interesante, puesto que he aprendido que el mundo de los motores de búsqueda está cambiando y que la busqueda conversacional es el futuro. Se que existen mas herramientas y hacer el reto me ha animado a investigar más sobre ellas. Veo un gran potencial para investigar y recopilar datos.
+
+
+## Dia 11: Como hacer data scraping de cualquier página web
+
+En el reto de hoy vamos a hacer scraping ([extracción de información](https://es.wikipedia.org/wiki/Web_scraping)) de páginas webs utilizando [Browse AI](https://www.browse.ai/). Es una herramienta que nos ayuda a extraer información que podremos exportar después para analizar y utilizar de diferentes formas. El objetivo es aprender:
+
+
+
+* Casos de usos para el web scraping
+* Cómo realizarlo de forma efectiva
+* Las consideraciones legales y de privacidad del web scraping
+
+Como en otras ocasiones, nos proporcionan una guía para realizar el reto. La abrimos y ¡manos a la obra!
+
+Siguiendo unos pocos pasos hemos extraido la información que necesitamos. Ha sido una tarea fácil de implementar. Ahora ya podemos exportar estos datos en formato csv o Excel. 
+
+![alt_text](/static/img/100-dias-ia-2/image3.png "image_tooltip")
+
+
+Un dia más he aprendido algo que va a ser exptrmadmente util para futuros proyectos a la vez que es una estrategia que voy a poder ofrecer tambien a mis clientes 👍.
+
+
+## Dia 12: Crear una guía vídeo guía con IA
+
+Hoy vamos a crear una vídeo guía con una nueva herramienta que aun no hemos utilizado nunca: [Guidde](https://www.guidde.com/). Esta video guia detlla los pasos que nuestros usuarios deben seguir para realizar una tarea en una wb o aplicacion. Estas guías son visuales e intuitivas, lo que las hace mucho mas faciles de entender que una guía de texto.
+
+
+
+![alt_text](/static/img/100-dias-ia-2/image4.png "image_tooltip")
+
+
+En este vídeo oficial nos explican lo que se puede hacer con [Guidde](https://www.guidde.com/).
+
+
+### Creamos una guía
+
+Lo primero que tenemos que hacer es pensar en un tóipico para crear una guía. Para no perder tiempo, he pensado en algo simple, como comprar criptomonedas en la plataforma que yo utilizo, MEXC. He omitido muchos pasos, puesto que solamente quería probar como funciona [Guidde](https://www.guidde.com/). Para hacerlo mas rápido, he hecho la guía en inglés, aunque la podria haber hecho perfectamente en castellano.
+
+Ha sido tan facil como grabar los distintos pasos usando la extension de Chrome que proporcionan y después he dejado que la IA genere los pasos y textos. Lo mejor es que ofrecen la opción de voz sobre texto, es decir, que no he tenido que grabar el audio para los distintos pasos. 
+
+Me han sorprendido la cantidad de opciones que hay para exportar nuestra guía. Podemos generar una pagina con una guia completa wue viene con el video y los pasos escritos, exportar solo el video, expotatr la guia en formato Markdown e incluso en PDF. Me parece una herramienta con mucho potencial.
+
+Aquí paso [un enlace a la mía](https://app.guidde.com/share/playbooks/syCpnyrNs2LTv9EXJAeJZC?origin=2nlVkcH6DlXB5HGDmP0tgkgWzpr2), aunque como he comentado antes, es extremadamente rudimentaria. Pero es suficiente para entender el funcionamiento de [Guidde](https://www.guidde.com/) y su potencial.
+
+
+## Dia 13: Extraer informacion de un PDF
+
+Llego al penúltimo día de la segunda semana del reto muy animado por todo lo que aprendido y pensando en las mil formas en las que voy a poder aplicar estos conocimientos en un sinfin de proyectos. Hoy aprenderemos a extraer informacion de un documento PDF con la herramienta [ChatPDF](https://www.chatpdf.com/). 
+
+Yo he [escogido un PDF](https://static1.squarespace.com/static/62f177fa8c80431c9f522556/t/62f1b74907ba8f01a227accc/1660008273749/Re-imagining+Urban+Spaces+with+DALL-E+AI+-+VOL1.0.pdf) que encontré haciendo una búsqueda de prompts utilizando Exa, en el [reto](#investigacion-ia) de hace unos días. 
+
+Hay que tener en cuenta de que tenemos una serie de limitaciones con la cuenta gratuita. EL documento no podrá exceder las 120 páginas. Tampoco se podrán subir mas de 2 PDFs al dia.
+
+Una vez hayamos subido nuestro PDF, nos aparecerá un interfaz de chat en el que podremos hacerle preguntas sobre el documento que hemo subido y nos dará respuestas sobre el documento analizado.
+
+
+![alt_text](/static/img/100-dias-ia-2/image5.png "image_tooltip")
+
+
+Después de haberlo probado un rato, no estoy seguro de que esta herramienta vaya a ser muy util para mi. Con Chat GPT puedo analizar un pdf y pedirle que me lo analice, resuma y que encuentre la información que estoy buscando. Lo único bueno que le veo a esta herramienta es que puedo acceder al pdf en el mismo interfaz.
+
+
+## Dia 14: Fin de la segunda semana
+
+Una semana mas llega a su fin y he de decir que he aprendido una barbaridad de cosas. Estoy muy contento con mi progreso y lo más importante es que con los conocimientos que he adquirido y las nuevas herramientas que he conocido, tengo muchas ideas que quiero llevar a cabo. ¡Tengo muchas ganas de que llegue la semana que viene para seguir progresando! 💪
+
+He creado muchas cosas interesantes y he conocido muchas herramientas nuevas:
+
+
+
+* Aplicación para tomar notas de audio y convertirlas a texto con [Glide](https://www.glideapps.com/).
+* Crear un coach personalizado con [ChatGPT](https://chat.openai.com/).
+* Aprender como investigar tópicos con IA utilizando [Exa](https://exa.ai/search) y [Perplexity](https://www.perplexity.ai).
+* Hacer data scraping con [Browse AI](https://www.browse.ai/).
+* Crear guías y documentación en video con [Guidde](https://www.guidde.com/).
+* Extraer informacíon de documentos extensos con [ChatPDF](https://www.chatpdf.com/).
