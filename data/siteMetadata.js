@@ -8,7 +8,7 @@ const siteMetadata = {
   language: "es-ES",
   siteUrl: "https://www.zenon.blog",
   siteRepo: "https://github.com/jhmarina/zenon.blog/",
-  image: "/static/img/avatar.jpeg",
+  image: "/static/img/avatar.webp",
   socialBanner: "/static/img/twitter-card.png",
   email: "jhmarina@gmail.com",
   github: "https://github.com/jhmarina",
