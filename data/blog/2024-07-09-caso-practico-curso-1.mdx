@@ -1,0 +1,85 @@
+---
+title: Caso práctico curso Especialista en Inteligencia Artificial - Día 1
+date: '2024-07-09'
+tags: ['aprendizajes', 'inteligencia artificial', 'curso especialista IA']
+draft: false
+summary: Este es el primer de varios artículos en los que detallo como defino y desarrollo el caso práctico para el curso de Especialista en Inteligencia Artificial que estoy realizando.
+---
+
+<TOCInline toc={props.toc} />
+
+
+# Introducción
+
+En el contexto del curso que estoy realizando de Especialista en Inteligencia Artificial, se nos ha presentado la oportunidad de realizar un caso práctico. Es una oportunidad para plasmar los conocimientos adquiridos y desarrollar nuevos.
+Nos han brindado la oportunidad de proponer proyectos. Y hay dos (muy diferentes) que me interesan mucho.
+
+## Investigando posibles proyectos que he propuesto
+
+- Predicción del precio de una acción con ML.
+- Detección de rostros y reconocimiento facial.
+
+## Proyecto escogido: Detección de rostros y reconocimiento facial
+
+- He experimentado con Tensorflow.js en el pasado y me ha parecido interesante.
+- Es un proyecto divertido en el que voy a incluir a mis hijos
+	- Especialmente a Aratz (el pequeño de 7 años), al que le interesa mucho la interacción con computadoras. Le regalé un lector de tarjetas RFID y se pasa el dia interactuando con ellas y el ordenador. Le va a gustar ver y participar en un proyecto como este y quizá incluso podemos ¡integrar su lector en el futuro!
+- De todo lo que he aprendido hasta ahora sobre inteligencia artificial, la Visión por Computación es probablemente uno de los campos que más me interesa. Por sus aplicaciones en muchos ámbitos: sanidad, seguridad, cadenas de producción.
+- Sobretodo: creo que es algo que voy a disfrutar y que puedo seguir desarrollando y mejorando en el futuro 😀.
+
+## Como estoy planteando el proyecto
+
+- Quiero aprovechar mi experiencia en el entorno Cloud Native y por ello el proyecto estará "containerizado". Se que hay aplicaciones similares y muchísimo mas avanzadas a la mia, pero es una buena oportunidad para crear un proyecto que potencialmente se puede desplegar en un entorno Docker o incluso un cluster de k8s.
+- Es una oportunidad para mejorar y desarrollar mis conocimientos de project manager/product owner. Voy  a hacer una buena definición de los requerimientos del proyecto, documentarlo y hacer un seguimiento del desarrollo. No creo que llegue a plantearme un Kanban, aunque a lo mejor me vengo arriba y lo acabo haciendo 😂.
+
+## Empezamos investigando como lo podemos implementar y creando un repositorio en GitHub
+
+Para la investigación me he servido principalmente de diferentes fuentes de internet, tango mediante Google como Youtube. Se encuentran infinidad de enfoques y diferentes usos de librerías. Tambien tengo el libro del curso. He decidido inicialmente documentar los requerimientos y la implementación basándome en lo que he visto en diferentes fuentes. Es probable que tenga que revisar este documento en un futuro.
+La aplicación tiene dos partes bien definidias:
+- Un modelo de aprendizaje y detección de rostros
+- Un servidor web que muestra el video y los datos en el cliente a la vez que actualiza interactua con la API de Google Sheets
+La implementación del servidor web y la interacción con la API de Google Sheets es algo que conozco de otros experimentos pasados y creo que es la parte que conozco mejor.
+
+Una vez he acabado mi investigación, he creado un repositorio en GitHub con un archivo Readme lo mas completo posible. Siempre he sido un férreo defensor del enfoque Lean, de hacer algo rápido e iterar. Pero por mi pasada experiencia en proyectos de software, se que no está de mas tener una documentación lo más detallada posible.
+El código se encuentra en el siguiente repositorio: https://github.com/jhmarina/app-reconocimiento-facial. 
+
+## Definición del proyecto
+
+> Esta es una aplicación web que utiliza la detección y el reconocimiento facial en tiempo real. La aplicación detecta rostros utilizando un modelo preentrenado y muestra el nombre de la persona detectada junto con la hora de la detección. Estos datos serán accesibles en una página web a tiempo real. A Estos datos quedarán también registrados en una hoja de Google Sheets.
+
+Ese sería el objetivo del proyecto. Creo que es algo ambicioso, pero disponemos de 60 horas para realizarlo. Creo que es factible. 
+
+### ¿Cómo funcionará el modelo de aprendizaje?
+
+- Recopilación de Datos: Se recopilan imágenes de entrenamiento de diferentes personas con sus respectivas etiquetas (nombres).
+- Preprocesamiento de Datos: Las imágenes se preprocesan, por ejemplo, ajustando su tamaño y formato.
+- Entrenamiento del Modelo:
+    - Detección de Rostros con dlib: Se utiliza dlib para detectar rostros en las imágenes.
+    - Extracción de Características: Se extraen características faciales importantes de cada rostro.
+    - Codificación de Rostros: Las características faciales se codifican en un vector de características numéricas.
+    - Comparación con Rostros Conocidos: Las codificaciones de los rostros se comparan con las codificaciones de rostros conocidos para entrenar el modelo de reconocimiento.
+- Validación del Modelo: Se valida la precisión del modelo con un conjunto de datos de validación.
+- Guardado del Modelo: El modelo entrenado (codificaciones faciales y etiquetas) se guarda en un archivo para su uso posterior.
+- Implementación en la Aplicación: El modelo guardado se implementa en la aplicación web para realizar la detección y el reconocimiento facial en tiempo real.
+
+![Esquema que describe como funciona el modelo de aprendizaje](/static/img/especialista-ia/mermaid-modelo-aprendizaje.jpg "image_tooltip")
+
+### ¿Cómo funcionará la aplicación web?
+
+- Usuario: El usuario accede a la aplicación web desde su navegador.
+- Servidor Flask: El servidor Flask recibe la solicitud de acceso a la web.
+- Captura de Video con OpenCV: El servidor Flask solicita el feed de video, y OpenCV captura los frames de video en tiempo real.
+- Detección y Reconocimiento Facial: Los frames de video se procesan para detectar y reconocer rostros utilizando la biblioteca face_recognition.
+- Actualiza Detecciones: Las detecciones (nombre y hora) se almacenan en una lista en memoria.
+- Envía Datos a Google Sheets: Los datos de detección se envían a Google Sheets utilizando la API de Google Sheets.
+- Hoja de Google Sheets: Los datos se guardan en una hoja de Google Sheets.
+- Retorna Video con Detecciones: Los frames procesados se envían de vuelta al servidor Flask, que los retorna al navegador del usuario.
+- Renderiza Video: El navegador del usuario renderiza el video con las detecciones superpuestas.
+- API de Detecciones: Cuando el navegador solicita las detecciones, el servidor Flask responde con un JSON que contiene las detecciones almacenadas.
+- Tabla de Detecciones en HTML: El navegador del usuario actualiza la tabla de detecciones en la interfaz web cada 5 segundos con la información recibida de la API de detecciones.
+
+![Esquema que describe como funciona el servidor web](/static/img/especialista-ia/mermaid-servidor-web.jpg "image_tooltip")
+
+## Fin del primer dia trabajando en el caso práctico
+
+Con esto acabo el primer dia de trabajo en el caso práctico. El próximo dia empiezo a implementar estas ideas con código. Estoy convencido de que parte de lo que he documentado variará, estoy planteando conceptos basándome en lo que he investigado y aun no sé exactamente cómo los voy a implementar.
