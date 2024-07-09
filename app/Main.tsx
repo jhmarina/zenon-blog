@@ -3,7 +3,6 @@ import Tag from "@/components/Tag";
 import siteMetadata from "@/data/siteMetadata";
 import { formatDate } from "pliny/utils/formatDate";
 import Image from "@/components/Image";
-import NewsletterForm from "pliny/ui/NewsletterForm";
 
 const MAX_DISPLAY = 5;
 
@@ -22,18 +21,13 @@ export default function Home({ posts }) {
         </div>
         <div className="mr-8 pt-6">
           <h1 className="pb-6 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            !Hola!, Soy Jesús Herman Marina
+            Blog de Jesús Herman Marina
           </h1>
           <h2 className="prose text-lg text-gray-600 dark:text-gray-400">
             {`Apasionado del estoicismo, mutidisiplinar. Llevo 17 años como Diseñador Web y especialista en UX. He sido Project Manager en el sector Open Source. 
-            Ahora estoy estudiando Data Science e IA. Apasionado de las finanzas y las BTT.
-            Tambien `}
-            <Link href="https://pouweb.com">diseño webs para PYMES</Link>
-            {". Este es mi "}
-            <Link href="/blog">blog</Link>
-            {". A veces lanzo "}
-            <Link href="/proyectos">proyectos</Link>
-            {"."}
+            Apasionado de las finanzas y las BTT.
+            Esta es `}
+            <Link href="https://jhmarina.me">mi página principal</Link>.
           </h2>
         </div>
       </div>
