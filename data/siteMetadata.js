@@ -1,12 +1,12 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: "Zenon.Blog",
+  title: "Diseñador Web, Especialista en UX y Product Owner | Jesús Herman Marina",
   author: "Jesus Herman-Marina",
-  headerTitle: "Zenon.Blog",
+  headerTitle: "Jesús Herman",
   description:
-    "Blog personal de Jesus Herman Marina. Dedicado a mi exploración de ideas y a compartir mis descubrimientos, especialmente en el ámbito del desarrollo personal, tecnología, economía y emprendimiento",
+    "Soy un apasionado del estoicismo, mutidisiplinar. Llevo 17 años como Diseñador Web y especialista en UX. He sido Project Manager y product Owner en el sector Open Source. Apasionado de las finanzas y las BTT.",
   language: "es-ES",
-  siteUrl: "https://www.zenon.blog",
+  siteUrl: "https://www.jhmarina.me",
   siteRepo: "https://github.com/jhmarina/zenon.blog/",
   image: "/static/img/avatar.webp",
   socialBanner: "/static/img/twitter-card.png",
@@ -17,7 +17,7 @@ const siteMetadata = {
   locale: "es-ES",
   analytics: {
     googleAnalytics: {
-      googleAnalyticsId: "G-PP9TE9C1QV", // e.g. G-XXXXXXX
+      googleAnalyticsId: "G-3HN44CQ980", // e.g. G-XXXXXXX
     },
   },
   newsletter: {

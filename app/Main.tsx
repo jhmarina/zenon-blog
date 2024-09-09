@@ -12,7 +12,7 @@ export default function Home({ posts }) {
       <div className="my-6 flex flex-col items-center gap-x-12 xl:mb-12 xl:flex-row">
         <div className="mx-2 my-12 flex w-[300px] items-center justify-center sm:w-[400px] md:w-[550px]">
           <Image
-            src="/static/img/avatar.webp"
+            src="/static/img/profile.png"
             width={270}
             height={270}
             alt="avatar"
@@ -21,16 +21,20 @@ export default function Home({ posts }) {
         </div>
         <div className="mr-8 pt-6">
           <h1 className="pb-6 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Blog de Jesús Herman Marina
+            Jesús Herman Marina 👋
           </h1>
           <h2 className="prose text-lg text-gray-600 dark:text-gray-400">
-            {`Apasionado del estoicismo, mutidisiplinar. Llevo 17 años como Diseñador Web y especialista en UX. He sido Project Manager en el sector Open Source. 
-            Apasionado de las finanzas y las BTT.
-            Esta es `}
-            <Link href="https://jhmarina.me">mi página principal</Link>.
+            {`Apasionado del estoicismo, mutidisiplinar. Llevo 17 años como Diseñador Web y especialista en UX. He sido PO y Project Manager en el sector Open Source. 
+            Apasionado de las finanzas y las BTT. `}
+            <Link href="/sobre">Más sobre mí</Link>.
           </h2>
+          <div className="mr-8 pt-6">
+            <Link className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" href="https://www.linkedin.com/in/jesushermanmarina/" target="_blank" >LinkedIN</Link>
+            <Link className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" href="https://behance.net/jhmarina" target="_blank" >Portafolio Diseño</Link>
+          </div>
         </div>
       </div>
+      
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
