@@ -1,0 +1,137 @@
+---
+title: Caso práctico curso Especialista en Inteligencia Artificial - Días 2 y 3
+date: '2024-07-11'
+tags: ['aprendizajes', 'inteligencia artificial', 'curso especialista IA']
+draft: false
+summary: Este es el segundo de varios artículos en los que detallo como defino y desarrollo el caso práctico para el curso de Especialista en Inteligencia Artificial que estoy realizando.
+---
+
+<TOCInline toc={props.toc} />
+
+
+## Introducción
+En el dia de hoy me he dedicado a preparar el entorno para desarrollar la aplicación. Como quiero que esto se pueda desarrollar fácilmente en cualquier sistema y gestionar las dependencias sin mucha complicación, voy a utilizar virtualenv de Python.
+Ahora, lo primero que voy a hacer es definir la estructura del proyecto.
+
+## Estructura del proyecto
+```bash
+/path/del/proyecto
+|-- app.py
+|-- modelo_entrenamiento.py # Aquí entrenamos el modelo para que procese las imágenes y almacene las codificaciones
+|-- requirements.txt 
+|-- face_encodings.pkl # Este archivo almacena las codificaciones despues de entrenar el modelo
+|-- credenciales.json # Credenciales para acceder a Google Sheets
+|-- templates/
+|   `-- index.html # Página HTML para la interfaz de la app Flask
+|-- imagenes/
+|   |-- imagen1.jpg # Imagenes de rostros para entrenar el modelo
+|   |-- imagen2.jpg
+|   `-- ...
+```
+## Creamos y activamos un entorno virtual de Python
+Asumo que tienes Python y Visrtualenv instalados en tu ordenador, de no ser así, deberás de hacerlo primero. Comento tambien que los comandos para activar y desactivar un entorno virtual de Python, varían según el sistema operativo que utilices [En este enlace](https://python.land/virtual-environments/virtualenv) tienes las distintas opciones. Yo lo he desarrollado con MacOS. Utilizo por defecto la versión 3 de Python que viene instalada por defecto.
+
+```bash
+# Creamos el entorno
+
+python3 -m venv venv 
+
+# Lo activamos
+
+source venv/bin/activate/```
+
+## Instalamos las dependencias
+Instalamos las dependencias que definimos en el artículo anterior:
+
+```bash
+pip install flask opencv-python opencv-python-headless dlib face_recognition gspread google-auth google-auth-oauthlib google-auth-httplib2
+```
+
+Aquí empezó mi calvario que ocupó todo mi dia (y parte del tercer dia de desarrollo del proyecto).
+Lo bueno del problema es que me sucedía tanto en MacOS como en Windows, con o sin WSL. Así que técnicamente el problema es persistente en distintas plataformas. Curiosamente es un problema que no sucede desarrollando sobre un contenedor de Docker, pero como el plan siempre fue desarrollar primero en un entorno local y luego desplegar el contenedor, me volví loco intentando encontrar una solución.
+
+## El maldito CMake de pip está roto
+[CMake](https://es.wikipedia.org/wiki/CMake) es una herramienta para empaquetar software, entre otras cosas. En nuestro caso, es una dependencia de `dlib` (que es necesario para utilizar `face_recognition`), asi que al instalar `dlib` instala también Cmake. Al intentar instalar el paquete con `, nos da el siguiente error (Aquí por ejemplo lo intenté instalar en Windows).
+
+```shell
+Collecting dlib
+  Using cached dlib-19.24.4.tar.gz (3.3 MB)
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+  Preparing metadata (pyproject.toml) ... done
+Building wheels for collected packages: dlib
+  Building wheel for dlib (pyproject.toml) ... error
+  error: subprocess-exited-with-error
+
+Building wheel for dlib (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [14 lines of output]
+      <string>:210: SyntaxWarning: invalid escape sequence '\('
+      <string>:211: SyntaxWarning: invalid escape sequence '\('
+      <string>:212: SyntaxWarning: invalid escape sequence '\('
+      running bdist_wheel
+      running build
+      running build_ext
+      Traceback (most recent call last):
+        File "<frozen runpy>", line 198, in _run_module_as_main
+        File "<frozen runpy>", line 88, in _run_code
+        File "D:\Dev\app-reconocimiento-facial\venv\Scripts\cmake.exe\__main__.py", line 4, in <module>
+      ModuleNotFoundError: No module named 'cmake'
+
+      ERROR: CMake must be installed to build dlib
+
+      [end of output]
+
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for dlib
+```
+
+Lo primero que hice es comprobar si Cmake está instalado en el entorno virtual:
+
+```shell
+(venv) PS D:\Dev\app-reconocimiento-facial> python -m pip install cmake
+Requirement already satisfied: cmake in d:\Dev\dev\app-reconocimiento-facial\venv\lib\site-packages (3.29.3
+```
+
+A partir de aquí empezó la odisea de intentar solucionarlo. Como he dicho, desplegué incluso un contenedor de Docker, donde no tenia estos problemas. Lo primero que leí es que se tenia que instalar CMake a nivel del sistema, no del entorno virtual. Eso no ayudó. Después he intentado mil trucos, he jugado con versiones específicas de los paquetes, he hecho de todo y he fallado una y otra vez. 
+Finalmente encontré una entrada en Stack Overflow (que desgraciadamente no he encontrado más) donde indicaban que el problema reside en el paquete de dlib de pip, que no funciona correctamente. Esto me llevó a un Bug report en el repositorio de dlib donde sugerian compilarlo nosotros mismos dentro del entorno virtual. 
+
+Algunos de estos pasos seran diferentes para Windows. Aquí detallo como lo he hecho en MacOS (asumo que será lo mismo en Linux).
+
+```shell
+# Instalamos cmake en el entorno virtual
+pip install cmake
+
+# Comprobamos que esta Cmake
+which cmake
+
+# Exportamos el path
+export CMAKE=$(which cmake)
+
+# Comprobamos que funciona
+cmake --version
+
+# Dentro de la carpeta del entorno, nos bajamos dlib y lo compilamos
+git clone https://github.com/davisking/dlib.git
+cd dlib
+mkdir build
+cd build
+cmake ..
+cmake –build .
+
+cd .. # De vuelta a la carpeta dlib
+
+# Lo instalamos. Esto lleva un rato
+python3 setup.py install
+
+# Comprobamos que tenemos dlib funcionando
+python3 -c "import dlib; print(dlib.__version__)"
+
+```
+
+Con esto conseguí que finalmente funcionara dlib. ¡¡¡La verdad que me ha costado vida y media!!! 🎉🥳
+
+## Fin del segundo dia (y parte del tercero)
+Como he mencionado al principio, solucionar este problema me ha costado algo más de un día. Creo que he pecado un poco (bastante) de novato. Aunque durante años he hecho desarrollo (principalmente frontend) hay cosas que aun me cuestan mucho solucionar. Que, cuando un paquete no funcione, lo intentes compilar tú mismo, es de primero de manual de programador 😅. La cuestión es que he sabido solucionar el problema, y de paso he aprendido cosas nuevas, que estoy seguro que me servirán en el futuro. ¡A por el dia 3!
+
+¡Ah! No olvides echarle un vistazo al repositorio: https://github.com/jhmarina/app-reconocimiento-facial 

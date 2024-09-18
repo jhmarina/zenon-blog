@@ -1,0 +1,52 @@
+---
+title: Caso práctico curso Especialista en Inteligencia Artificial - Conclusiones
+date: '2024-09-18'
+tags: ['aprendizajes', 'inteligencia artificial', 'curso especialista IA']
+draft: false
+summary: Con este artículo finalizo mi trabajo en el caso práctico del curso.
+---
+
+<TOCInline toc={props.toc} />
+
+# Conclusión del proyecto: Últimas reflexiones sobre el caso práctico del curso de especialista en IA
+
+Después de semanas de trabajo, finalmente llego a la conclusión de mi proyecto práctico de reconocimiento facial como parte del curso de especialista en inteligencia artificial. Durante este proceso, documenté los desafíos técnicos, las soluciones que implementé y la evolución del proyecto a través de dos artículos anteriores. Sin embargo, en esta última etapa decidí centrarme completamente en terminar el proyecto, lo que me llevó a dejar de escribir artículos de manera diaria.
+
+Este artículo es mi último sobre esta experiencia de desarrollo, y aquí compartiré las conclusiones finales y las lecciones aprendidas al llevar este proyecto a su fin.
+
+## Un proyecto (demasiado) ambicioso: Reconocimiento facial en Kubernetes
+
+Mi intención con este proyecto no era simplemente implementar un caso práctico de IA, sino crear una aplicación funcional que pudiera ser desplegada en un entorno de producción real, aprovechando mis conocimientos en desarrollo web, UX y Kubernetes. El objetivo final era construir una solución de reconocimiento facial que no solo funcionara en tiempo real, sino que pudiera ser escalable y desplegada en clústeres de Kubernetes con facilidad.
+
+Desde el principio, sabía que sería un reto combinar diferentes disciplinas, pero también fue lo que hizo que el proyecto fuera más gratificante. Integrar IA en una aplicación web y garantizar que los resultados se registraran en una hoja de Google Sheets en tiempo real fue uno de los puntos clave de esta integración.
+
+## Desafíos encontrados y soluciones aplicadas
+
+En los primeros dos artículos, detallé los problemas más técnicos que encontré, especialmente relacionados con la implementación del modelo de reconocimiento facial y el preprocesamiento de imágenes. Me encontré con dificultades en el manejo de las imágenes, especialmente cuando el modelo fallaba al procesarlas debido a problemas en su formato o calidad. Fue un proceso de prueba y error para entender exactamente cómo las imágenes debían ser preprocesadas para que el modelo funcionara correctamente.
+
+En resumen, algunos de los principales problemas y sus soluciones fueron:
+
+- **Problemas con la carga de imágenes y formatos**: Tuve que investigar cómo las imágenes eran interpretadas por el modelo, ajustando el preprocesamiento para asegurar que fueran convertidas correctamente a RGB y que tuvieran la calidad necesaria.
+- **Errores en la detección de rostros**: Encontré casos en los que el modelo no detectaba rostros debido a características de la imagen. Esto me llevó a probar ajustes en los parámetros del modelo y a refinar el preprocesamiento para mejorar la tasa de detección.
+- **Integración con Google Sheets**: Otro desafío fue conectar el sistema de detección con una hoja de Google Sheets para registrar las detecciones. Inicialmente encontré problemas con la autenticación y las credenciales de Google, pero logré resolverlos investigando el uso de bibliotecas actualizadas como `google-auth` en lugar de bibliotecas obsoletas.
+
+## El enfoque final: Centrarme en acabar el proyecto
+
+A medida que avanzaba, me di cuenta de que, aunque era útil documentar cada paso, el enfoque más efectivo era concentrarme en terminar el desarrollo. Integrar todos los componentes del sistema, optimizar el rendimiento del reconocimiento facial en tiempo real y empaquetar todo en un contenedor Docker para su despliegue en Kubernetes requirió una dedicación total.
+
+Dejé de escribir diariamente y me sumergí en la implementación final del proyecto. Esto incluyó ajustes en la estructura de la aplicación para garantizar que pudiera ser desplegada fácilmente en cualquier entorno.
+
+Aquí os muestro una imágen de la app en funcionamiento:
+
+![alt_text](/static/img/reconocimiento-facial.png "image_tooltip")
+
+## Conclusiones finales
+
+En conclusión, este proyecto fue una combinación enriquecedora de habilidades técnicas y de implementación de productos. A lo largo del curso nos centramos en crear modelos y utilizar diferentes técnicas, pero en este proyecto en particular no fue necesario implementar nuevos modelos, ya que utilicé uno preentrenado. Sin embargo, el desarrollo de la aplicación me permitió aplicar conceptos clave como el preprocesamiento de datos y la integración de tecnologías web y de despliegue.
+
+Mi objetivo era claro desde el principio: desarrollar un producto web funcional dentro del contexto de Kubernetes, que no solo fuera un ejercicio académico, sino una solución práctica y escalable. El resultado final fue una aplicación que se puede utilizar en tiempo real, desplegar en entornos de producción y que se adapta a escenarios reales de detección y registro de rostros.
+
+Este será mi último artículo sobre este caso práctico, y aunque el camino estuvo lleno de retos, cada uno me permitió aprender y crecer, no solo como desarrollador, sino como especialista en inteligencia artificial. A partir de aquí, continúo mi viaje en el desarrollo de soluciones IA aplicadas a problemas reales, con una nueva perspectiva sobre cómo integrar tecnologías de manera eficiente.
+
+¡Gracias! Puedes echar un vistazo al proyecto en este repositorio de Github: https://github.com/jhmarina/app-reconocimiento-facial
+
