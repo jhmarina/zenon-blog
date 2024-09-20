@@ -12,41 +12,105 @@ summary: Con este artículo finalizo mi trabajo en el caso práctico del curso.
 
 Después de semanas de trabajo, finalmente llego a la conclusión de mi proyecto práctico de reconocimiento facial como parte del curso de especialista en inteligencia artificial. Durante este proceso, documenté los desafíos técnicos, las soluciones que implementé y la evolución del proyecto a través de dos artículos anteriores. Sin embargo, en esta última etapa decidí centrarme completamente en terminar el proyecto, lo que me llevó a dejar de escribir artículos de manera diaria.
 
-Este artículo es mi último sobre esta experiencia de desarrollo, y aquí compartiré las conclusiones finales y las lecciones aprendidas al llevar este proyecto a su fin.
+A continuación os paso la presentación que realicé del caso práctico.
 
-## Un proyecto (demasiado) ambicioso: Reconocimiento facial en Kubernetes
+# Presentación del caso practico
 
-Mi intención con este proyecto no era simplemente implementar un caso práctico de IA, sino crear una aplicación funcional que pudiera ser desplegada en un entorno de producción real, aprovechando mis conocimientos en desarrollo web, UX y Kubernetes. El objetivo final era construir una solución de reconocimiento facial que no solo funcionara en tiempo real, sino que pudiera ser escalable y desplegada en clústeres de Kubernetes con facilidad.
+## Objetivos del proyecto.
 
-Desde el principio, sabía que sería un reto combinar diferentes disciplinas, pero también fue lo que hizo que el proyecto fuera más gratificante. Integrar IA en una aplicación web y garantizar que los resultados se registraran en una hoja de Google Sheets en tiempo real fue uno de los puntos clave de esta integración.
+El objetivo principal de este proyecto es desarrollar una aplicación de reconocimiento facial en tiempo real capaz de detectar, identificar y registrar los rostros que aparecen frente a una cámara. Esta aplicación debe permitir una implementación eficiente en un entorno web mediante la utilización de tecnologías modernas como [Flask](https://flask.palletsprojects.com/en/3.0.x/) y [Docker](https://www.docker.com/), para asegurar que pueda ser fácilmente desplegada en cualquier infraestructura, incluidos contenedores de [Kubernetes.](https://kubernetes.io/)
 
-## Desafíos encontrados y soluciones aplicadas
+## Datos utilizados.
 
-En los primeros dos artículos, detallé los problemas más técnicos que encontré, especialmente relacionados con la implementación del modelo de reconocimiento facial y el preprocesamiento de imágenes. Me encontré con dificultades en el manejo de las imágenes, especialmente cuando el modelo fallaba al procesarlas debido a problemas en su formato o calidad. Fue un proceso de prueba y error para entender exactamente cómo las imágenes debían ser preprocesadas para que el modelo funcionara correctamente.
+Los datos utilizados para entrenar el modelo consisten en imágenes de rostros que se almacenan en un directorio específico (imagenes/). Estas imágenes se procesan utilizando la biblioteca [face_recognition](https://github.com/ageitgey/face_recognition) para obtener las codificaciones faciales. Cada imagen debe contener un solo rostro, y es importante que las imágenes estén en formato .jpg o .png. Los datos también incluyen las codificaciones faciales y los nombres asociados, que se guardan en un archivo de tipo [pickle](https://docs.python.org/3/library/pickle.html) (codificaciones.pkl).
 
-En resumen, algunos de los principales problemas y sus soluciones fueron:
+## Modelos que habremos utilizado.
 
-- **Problemas con la carga de imágenes y formatos**: Tuve que investigar cómo las imágenes eran interpretadas por el modelo, ajustando el preprocesamiento para asegurar que fueran convertidas correctamente a RGB y que tuvieran la calidad necesaria.
-- **Errores en la detección de rostros**: Encontré casos en los que el modelo no detectaba rostros debido a características de la imagen. Esto me llevó a probar ajustes en los parámetros del modelo y a refinar el preprocesamiento para mejorar la tasa de detección.
-- **Integración con Google Sheets**: Otro desafío fue conectar el sistema de detección con una hoja de Google Sheets para registrar las detecciones. Inicialmente encontré problemas con la autenticación y las credenciales de Google, pero logré resolverlos investigando el uso de bibliotecas actualizadas como `google-auth` en lugar de bibliotecas obsoletas.
+El modelo de reconocimiento facial utilizado se basa en la biblioteca [face_recognition](https://github.com/ageitgey/face_recognition), que implementa un algoritmo de reconocimiento facial basado en redes neuronales convolucionales (CNN). La biblioteca utiliza el modelo de [dlib](https://github.com/davisking/dlib) para la detección de rostros y extracción de codificaciones faciales, que luego se comparan con los datos de rostros previamente conocidos para identificar a las personas.
 
-## El enfoque final: Centrarme en acabar el proyecto
+Se utilizan los siguientes modelos de la libreria:
 
-A medida que avanzaba, me di cuenta de que, aunque era útil documentar cada paso, el enfoque más efectivo era concentrarme en terminar el desarrollo. Integrar todos los componentes del sistema, optimizar el rendimiento del reconocimiento facial en tiempo real y empaquetar todo en un contenedor Docker para su despliegue en Kubernetes requirió una dedicación total.
+- **Modelo de detección de caras**: Usando una CNN.
+- **Modelo de codificación facial**: Transforma la cara en un vector de características que puede ser comparado con otras caras.
 
-Dejé de escribir diariamente y me sumergí en la implementación final del proyecto. Esto incluyó ajustes en la estructura de la aplicación para garantizar que pudiera ser desplegada fácilmente en cualquier entorno.
+## Entrenamiento del modelo.
 
-Aquí os muestro una imágen de la app en funcionamiento:
+El entrenamiento del modelo en este proyecto es bastante simple, ya que el modelo en sí está pre-entrenado. Lo que se entrena aquí son las **codificaciones faciales** de los rostros conocidos. Para cada imagen de rostro, se extraen las características faciales utilizando el modelo de [face_recognition](https://github.com/ageitgey/face_recognition). Estas codificaciones faciales se asocian con los nombres de las personas y se almacenan en un archivo para su uso posterior durante la identificación en tiempo real.
 
-![alt_text](/static/img/reconocimiento-facial.png "image_tooltip")
+El proceso de entrenamiento incluye:
 
-## Conclusiones finales
+- Cargar imágenes de rostros.
+- Preprocesamiento de las imagenes
+  - **Conversión a RGB**: Este paso es crucial porque algunas imágenes pueden estar en otros formatos de color como CMYK o escala de grises, que no son adecuados para el modelo de reconocimiento facial, que requiere imágenes en formato RGB.
+  - **Conversión a numpy array**: Este formato es más fácil de manejar para las operaciones de detección y reconocimiento de caras que realiza la biblioteca face_recognition.
+  - **Validación de la imagen**: Se verifica que las imágenes sean del tipo [uint8](https://doc.embedded-wizard.de/uint-type) y que tengan tres canales de color (correspondientes a los colores RGB). Si una imagen no cumple con estas condiciones, se omite su procesamiento.
+- Extraer las codificaciones faciales.
+- Guardar las codificaciones y los nombres en un archivo para que puedan ser utilizados en la identificación.
+- Se comprueba tambien que no haya codificaciones duplicadas.
 
-En conclusión, este proyecto fue una combinación enriquecedora de habilidades técnicas y de implementación de productos. A lo largo del curso nos centramos en crear modelos y utilizar diferentes técnicas, pero en este proyecto en particular no fue necesario implementar nuevos modelos, ya que utilicé uno preentrenado. Sin embargo, el desarrollo de la aplicación me permitió aplicar conceptos clave como el preprocesamiento de datos y la integración de tecnologías web y de despliegue.
+![Imagen mostrando el funcionamiento de la aplicación de reconocimiento facial](/static/img/reconocimiento-facial.png "Imagen mostrando el funcionamiento de la aplicación de reconocimiento facial")
 
-Mi objetivo era claro desde el principio: desarrollar un producto web funcional dentro del contexto de Kubernetes, que no solo fuera un ejercicio académico, sino una solución práctica y escalable. El resultado final fue una aplicación que se puede utilizar en tiempo real, desplegar en entornos de producción y que se adapta a escenarios reales de detección y registro de rostros.
+## Evaluación y métricas de rendimiento.
 
-Este será mi último artículo sobre este caso práctico, y aunque el camino estuvo lleno de retos, cada uno me permitió aprender y crecer, no solo como desarrollador, sino como especialista en inteligencia artificial. A partir de aquí, continúo mi viaje en el desarrollo de soluciones IA aplicadas a problemas reales, con una nueva perspectiva sobre cómo integrar tecnologías de manera eficiente.
+La evaluación del modelo se realiza observando la precisión con la que el sistema reconoce los rostros en tiempo real. Algunas métricas importantes que se pueden considerar para evaluar el rendimiento son:
 
-¡Gracias! Puedes echar un vistazo al proyecto en este repositorio de Github: https://github.com/jhmarina/app-reconocimiento-facial
+- **Precisión**: La capacidad del sistema para identificar correctamente los rostros conocidos.
+- **Tasa de falsos positivos/negativos**: Es importante monitorear si el sistema identifica erróneamente a personas que no están en la base de datos (falsos positivos) o si falla en reconocer a una persona que debería ser identificada (falsos negativos). En mi caso concreto, esto no ha sido el caso, puesto que solamente he probado el modelo con 4 imagenes y no ha fallado.
 
+En este caso, no se requiere una validación cruzada tradicional, ya que el modelo preentrenado se utiliza principalmente para la extracción de características.
+
+## Aspectos éticos y de IA responsable.
+
+- **Privacidad**: La recolección y el uso de datos biométricos, como rostros, deben realizarse con el consentimiento explícito de las personas involucradas.
+- **Sesgos**: Es importante que el sistema sea justo y preciso para todas las personas, independientemente de su raza, género u otros factores.
+- **Transparencia**: Debe quedar claro cómo se utilizan los datos recolectados y cuáles son las limitaciones del sistema.
+- **Seguridad de los datos**: Las imágenes y codificaciones faciales deben ser almacenadas de manera segura, protegiendo la información personal de los usuarios.
+
+## Implementación y despliegue.
+
+La aplicación ha sido implementada utilizando Python y la biblioteca Flask para crear un servidor web que procesa las imágenes en tiempo real. Se ha integrado un modelo de reconocimiento facial que se entrena localmente y se despliega como parte del servidor.
+
+El despliegue se facilita mediante Docker, que permite empaquetar la aplicación en un contenedor. Esto asegura que la aplicación pueda ejecutarse de manera consistente en diferentes entornos.
+
+Además, la aplicación puede ser desplegada en Kubernetes para escalar en un clúster y manejar múltiples instancias de manera eficiente.
+
+## Impacto y beneficios.
+
+El impacto de este proyecto es significativo en áreas donde se requiere la identificación rápida de personas. Algunos beneficios:
+
+- **Seguridad**: Puede ser utilizado en sistemas de vigilancia para identificar personas en tiempo real.
+- **Control de acceso**: Se puede aplicar en sistemas de control de acceso, donde solo las personas autorizadas pueden ingresar.
+- **Escalabilidad**: Gracias al uso de Docker y Kubernetes, la aplicación puede escalarse para ser utilizada en múltiples ubicaciones con alta eficiencia.
+
+## Desafíos y limitaciones.
+
+- **Calidad de las imágenes**: Si las imágenes son de baja resolución o tienen poca iluminación, el modelo puede tener dificultades para detectar y reconocer los rostros. Incluso realizando un preprocesado de las imágenes he tenido problemas.
+- **Precisión**: Aunque en mi caso, con solo 4 fotografías, el modelo ha sido preciso, la precisión puede disminuir en entornos reales.
+- **Coste computacional**: He tenido problemas de rendimiento especialmente en lo referente a la detección, pese a utilizar un ordenador con altas capacidades de procesado y una buena tarjeta gráfica. Incluso con videos de baja resolución.
+
+## Futuras mejoras en próximos pasos.
+
+- **Mejorar la precisión**: Incluir más datos para mejorar la precisión del modelo y reducir los falsos positivos y negativos.
+- **Optimización de rendimiento**: Implementar técnicas de optimización para mejorar la velocidad del procesamiento de imágenes en tiempo real.
+- **Ampliar el uso de la IA**: Incluir análisis más avanzados como la detección de emociones o seguimiento de rostros.
+- **Mejorar la seguridad de los datos**: Implementar mejores prácticas para la encriptación de las codificaciones faciales y mejorar la gestión de la privacidad.
+- **Desplegar en entornos en la nube**: Integrar el despliegue con plataformas de la nube como AWS, Google Cloud o Azure para un mejor rendimiento y escalabilidad.
+
+**Muestra del interfaz en funcionamiento**
+
+**Documento Google Sheets**
+
+Enlace al documento de Google Sheets: (https://docs.google.com/spreadsheets/d/1hh5TTBP-mkEjpn4RhzDrvrUvHvLNrtUXIvIQxjpIKAU/edit?usp=sharing)
+
+**Referencias**
+
+- Repositorio del proyecto en GitHub, con instrucciones para el desarrollo y despliegue de la aplicación: (https://github.com/jhmarina/app-reconocimiento-facial)
+- [Artículos en este blog detallando el proceso de desarrollo:](https://jhmarina.me/tags/curso-especialista-ia/)
+
+**Conclusión**
+
+A lo largo del curso, nos hemos centrado en la creación de modelos y la implementación de diversas técnicas de IA. Sin embargo, en este proyecto específico, no fue necesario construir un modelo desde cero, ya que utilicé un modelo preentrenado de reconocimiento facial. Aunque el modelo estaba listo para su uso, el desarrollo del proyecto me permitió aplicar conceptos clave aprendidos durante el curso, especialmente en cuanto al preprocesamiento de datos, en concreto en el preprocesamiento de las imágenes.
+
+Mi objetivo era combinar la teoría aprendida en el curso con mi experiencia en desarrollo de productos, enfocándome en la creación de una solución funcional que no solo tuviera una base de IA, sino que también pudiera ser desplegada y gestionada eficientemente en un entorno de producción.
+
+En resumen, aunque no implementé técnicas avanzadas de modelado en este proyecto, sí utilicé muchos de los conceptos aprendidos durante el curso para enfrentar los desafíos técnicos y lograr mi objetivo de crear una aplicación completa y práctica dentro del ámbito de desarrollo web y despliegue en Kubernetes.
