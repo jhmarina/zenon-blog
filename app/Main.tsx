@@ -3,6 +3,7 @@ import Tag from "@/components/Tag";
 import siteMetadata from "@/data/siteMetadata";
 import { formatDate } from "pliny/utils/formatDate";
 import Image from "@/components/Image";
+import SocialLinks from "@/components/SocialLinks";
 
 const MAX_DISPLAY = 5;
 
@@ -27,14 +28,16 @@ export default function Home({ posts }) {
             {`Apasionado del estoicismo, mutidisiplinar. Llevo 17 años como Diseñador Web y especialista en UX. He sido PO y Project Manager en el sector Open Source. 
             Apasionado de las finanzas y las BTT. `}
             <Link href="/sobre">Más sobre mí</Link>.
+            {` Ofrezco servicios de `}
+            <Link href="/diseno-web">Diseño web</Link>
+            {` y si quieres saber más sobre mi trabajo o contactarme, estos de aquí abajo son mis enlaces 👇.`}
           </h2>
           <div className="mr-8 pt-6">
-            <Link className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" href="https://www.linkedin.com/in/jesushermanmarina/" target="_blank" >LinkedIN</Link>
-            <Link className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" href="https://behance.net/jhmarina" target="_blank" >Portafolio Diseño</Link>
+            <SocialLinks/>
           </div>
         </div>
       </div>
-      
+
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
